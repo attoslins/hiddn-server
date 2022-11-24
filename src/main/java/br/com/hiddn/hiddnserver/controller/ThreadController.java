@@ -15,20 +15,35 @@ public class ThreadController {
 	@Autowired
 	private ThreadRepository repository;
 
+	@GetMapping("/hello")
+	public String helloWorld() {
+		System.out.println("ThreadController => Hello World");
+		return "Hello world!";
+	}
+
 	@PostMapping("/thread")
 	public void createThread(@RequestBody br.com.hiddn.hiddnserver.bean.Thread thread) {
-		repository.save(thread);
+		// save a new Thread only if 'threadName' doesn't contain any blank spaces
+		if (thread.getThreadName().contains(" ")) {
+			throw new RuntimeException("Thread names cannot contain spaces");
+		} else {
+			repository.save(thread);
+		}
 	}
 
-	@GetMapping("/thread/{threadId}")
-	public long getThread(@PathVariable long threadId) {
+	@GetMapping("/thread/{threadName}")
+	public br.com.hiddn.hiddnserver.bean.Thread getThread(@PathVariable String threadName) {
 
-		br.com.hiddn.hiddnserver.bean.Thread thread = repository.findById(threadId);
+		br.com.hiddn.hiddnserver.bean.Thread thread = repository.findByThreadName(threadName);
 
 		if (thread == null) {
-			throw new RuntimeException("Comment not found with id " + threadId);
+			// Create a thread if it does not exist
+			thread = new br.com.hiddn.hiddnserver.bean.Thread(threadName);
+			repository.save(thread);
+			return thread;
+		} else {
+			// return a thread if it already exists
+			return thread;
 		}
-		return thread.getThreadId();
 	}
-
 }

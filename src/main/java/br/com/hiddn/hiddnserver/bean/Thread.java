@@ -30,27 +30,13 @@ public class Thread {
 		super();
 	}
 
-	public Thread(long threadId, Calendar creationDate, String threadName) {
-		super();
-		this.threadId = threadId;
-		this.creationDate = creationDate;
-		this.threadName = threadName;
-	}
-
 	public long getThreadId() {
 		return threadId;
 	}
 
-	public void setThreadId(long threadId) {
-		this.threadId = threadId;
-	}
-
-	public Calendar getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(Calendar creationDate) {
-		this.creationDate = creationDate;
+	public Thread(String threadName) {
+		super();
+		this.threadName = threadName;
 	}
 
 	public String getThreadName() {
