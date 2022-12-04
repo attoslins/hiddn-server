@@ -13,7 +13,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 @Entity(name = "Thread")
 @Table(name = "tb_thread")
-public class Thread {
+public class Threadd {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,15 +26,20 @@ public class Thread {
 	@Column(name = "thread_name", unique = true)
 	private String threadName;
 
-	public Thread() {
+	public Threadd() {
 		super();
+	}
+
+	public Threadd(long threadId, Calendar creationDate, String threadName) {
+		super();
+		this.threadName = threadName;
 	}
 
 	public long getThreadId() {
 		return threadId;
 	}
 
-	public Thread(String threadName) {
+	public Threadd(String threadName) {
 		super();
 		this.threadName = threadName;
 	}
@@ -46,5 +51,4 @@ public class Thread {
 	public void setThreadName(String threadName) {
 		this.threadName = threadName;
 	}
-
 }

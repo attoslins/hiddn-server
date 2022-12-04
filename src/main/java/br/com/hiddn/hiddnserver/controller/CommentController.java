@@ -18,14 +18,8 @@ public class CommentController {
 	@Autowired
 	private CommentRepository repository;
 
-	@PostMapping("/comment")
-	public void createComment(@RequestBody Comment comment) {
-		repository.save(comment);
-	}
-
 	@GetMapping("/comment/{cardId}")
 	public List<Comment> getComments(@PathVariable long cardId) {
-
 		List<Comment> comments = repository.findByCardId(cardId);
 		if (comments.isEmpty()) {
 			throw new RuntimeException("Comment not found with id " + cardId);
@@ -33,4 +27,9 @@ public class CommentController {
 		return comments;
 	}
 
+	@PostMapping("/comment")
+	public Comment createComment(@RequestBody Comment comment) {
+		repository.save(comment);
+		return comment;
+	}
 }

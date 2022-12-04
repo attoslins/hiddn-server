@@ -38,13 +38,6 @@ public class Comment {
 		super();
 	}
 
-	public Comment(long commentId, String commentDescription, Card card) {
-		super();
-		this.commentId = commentId;
-		this.commentDescription = commentDescription;
-		this.card = card;
-	}
-
 	public Comment(long commentId, Calendar creationDate, String commentDescription, Card card) {
 		super();
 		this.commentId = commentId;
@@ -65,19 +58,7 @@ public class Comment {
 		return commentDescription;
 	}
 
-	public void setCommentId(long commentId) {
-		this.commentId = commentId;
-	}
-
-	public void setCreationDate(Calendar creationDate) {
-		this.creationDate = creationDate;
-	}
-
-	public void setCommentDescription(String commentDescription) {
-		this.commentDescription = commentDescription;
-	}
-
-	public Long getCard() {
-		return card.getCardId();
+	public void setCard(Card card) {
+		this.card = card;
 	}
 }

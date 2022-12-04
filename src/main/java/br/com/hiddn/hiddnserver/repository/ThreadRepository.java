@@ -3,10 +3,12 @@ package br.com.hiddn.hiddnserver.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import br.com.hiddn.hiddnserver.bean.Threadd;
+
 @Repository
-public interface ThreadRepository extends JpaRepository<br.com.hiddn.hiddnserver.bean.Thread, Long> {
+public interface ThreadRepository extends JpaRepository<Threadd, Long> {
 
-	br.com.hiddn.hiddnserver.bean.Thread findById(long threadId);
+	Threadd findById(long threadId);
 
-	br.com.hiddn.hiddnserver.bean.Thread findByThreadName(String threadName);
+	Threadd findByThreadName(String threadName);
 }

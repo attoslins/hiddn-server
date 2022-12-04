@@ -34,7 +34,7 @@ public class Card {
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "thread_id", referencedColumnName = "threadId", updatable = false, insertable = true)
-	private br.com.hiddn.hiddnserver.bean.Thread thread;
+	private Threadd thread;
 
 	@OneToMany(mappedBy = "card", fetch = FetchType.LAZY)
 	private List<Comment> comments;
@@ -48,35 +48,28 @@ public class Card {
 		this.cardDescription = cardDescription;
 	}
 
-	public Card(long cardId, Calendar creationDate, String cardDescription) {
+	public Card(long cardId, Calendar creationDate, String cardDescription, Threadd thread) {
 		super();
 		this.cardId = cardId;
 		this.creationDate = creationDate;
 		this.cardDescription = cardDescription;
+		this.thread = thread;
 	}
 
 	public long getCardId() {
 		return cardId;
 	}
 
-	public void setCardId(long cardId) {
-		this.cardId = cardId;
-	}
-
 	public Calendar getCreationDate() {
 		return creationDate;
-	}
-
-	public void setCreationDate(Calendar creationDate) {
-		this.creationDate = creationDate;
 	}
 
 	public String getCardDescription() {
 		return cardDescription;
 	}
 
-	public void setCardDescription(String cardDescription) {
-		this.cardDescription = cardDescription;
+	public void setThread(Threadd thread) {
+		this.thread = thread;
 	}
 
 }

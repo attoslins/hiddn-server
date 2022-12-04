@@ -20,18 +20,16 @@ public class CardController {
 
 	@GetMapping("/card/{threadId}")
 	public List<Card> getCards(@PathVariable String threadId) {
-		System.out.println(threadId);
-		long id = Long.parseLong(threadId);
-		List<Card> cards = repository.findByThreadId(id);
+		List<Card> cards = repository.findByThreadId(Long.parseLong(threadId));
 		if (cards.isEmpty()) {
-			return List.of(new Card(
-					"A thread '" + threadId + "' está vazia! Vc pode ser o primeiro(a) a criar essa discussão!"));
+			return List.of(new Card("Esta thread está vazia! Vc pode ser o primeiro(a) a criar essa discussão!"));
 		}
 		return cards;
 	}
 
 	@PostMapping("/card")
-	public void createCard(@RequestBody Card card) {
+	public Card createCard(@RequestBody Card card) {
 		repository.save(card);
+		return (card);
 	}
 }
