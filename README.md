@@ -1,1 +1,1 @@
-# hiddn-client
+# hiddn-server
